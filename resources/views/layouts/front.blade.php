@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @yield('title')
+    </title>
 
     {{-- font and icon --}}
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -15,30 +17,25 @@
 
     <!-- Styles -->
 
-    <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/bootstrap5.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet">
 
 </head>
 <body>
 
-    <div class="wrapper">
-        @include('layouts.inc.admin.sidebar')
+   
+        @include('layouts.inc.frontend.frontnavbar')
 
-        <div class="main-panel">
-            @include('layouts.inc.admin.adminnav')
             <div class="content">
                 @yield('content')
             </div>
-            @include('layouts.inc.admin.adminfooter')
-        </div>
-    </div>
+         
+    
 
  
         <!-- Scripts -->
-        <script src="{{ asset('admin/js/jquery.min.js') }}" defer></script>
-        <script src="{{ asset('admin/js/popper.min.js') }}" defer></script>
-        <script src="{{ asset('admin/js/bootstrap-material-design.min.js') }}" defer></script>
-        <script src="{{ asset('admin/js/perfect-scrollbar.jquery.min.js') }}" defer></script>
+        <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+       
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         @if (session('status'))
