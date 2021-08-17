@@ -29,7 +29,7 @@
                          <textarea name="small_description" rows="3" class="form-control">{{ $products->small_description }}</textarea>
                     <div class="col-md-12 mb-3">
                         <label for="">Description</label>
-                         <textarea name="deskripsi" rows="3"  class="form-control">value={{ $products->deskripsi }}</textarea>
+                         <textarea name="deskripsi" rows="3"  class="form-control">{{ $products->deskripsi }}</textarea>
                     </div>
                    <div class="col-md-6 mb-3">
                        <label for="">Original Price</label>
