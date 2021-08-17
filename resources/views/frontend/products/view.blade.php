@@ -60,9 +60,11 @@
                                 </div>
                             </div>
                             <div class="col-md-13">
-                                
-                                <button type="button" class="btn btn-success me-3 float-start">Tambahkan Ke Favorit <i class="fa fa-heart"></i></button>
+                                @if ($products->qty > 0)
                                 <button type="button" class="btn btn-primary addToCartBtn me-3 float-start">Tambahkan Ke Keranjang <i class="fa fa-shopping-cart"></i></button>
+                                @endif
+                                <button type="button" class="btn btn-success me-3 float-start">Tambahkan Ke Favorit <i class="fa fa-heart"></i></button>
+                                
                             </div>
                         </div>
                     </div>

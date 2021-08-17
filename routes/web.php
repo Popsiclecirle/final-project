@@ -2,13 +2,14 @@
 
 use function Ramsey\Uuid\v1;
 
-use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\Frontend\FrontendController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\CategoryController;
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\FrontendController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -36,10 +37,12 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('add-to-cart', [CartController::class, 'addProduct']); 
     Route::post('delete-cart-item', [CartController::class, 'deleteproduct']); 
+    Route::post('update-cart', [CartController::class, 'updateCart']);
     
 
 Route::middleware(['auth'])->group(function () {
      Route::get('cart', [CartController::class, 'viewcart']);
+     Route::get('checkout', [CheckoutController::class, 'index']);
 });
 
 
