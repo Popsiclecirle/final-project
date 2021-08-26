@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\DashboardControler;
+use App\Http\Controllers\Admin\OrderControlller;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishlistController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -34,15 +37,28 @@ Route::get('category/{cate_slug}/{prod_slug}', [FrontendController::class, 'prod
 
 Auth::routes();
 
+Route::get('load-cart-data', [CartController::class, 'cartcount']);
+Route::get('load-wishlist-count', [WishlistController::class, 'wishlistcount']);
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('add-to-cart', [CartController::class, 'addProduct']); 
     Route::post('delete-cart-item', [CartController::class, 'deleteproduct']); 
     Route::post('update-cart', [CartController::class, 'updateCart']);
-    
+
+    Route::post('add-to-wishlist', [WishlistController::class, 'add']);
+    Route::post('delete-wishlist-item', [WishlistController::class, 'deleteitem']);
+
 
 Route::middleware(['auth'])->group(function () {
      Route::get('cart', [CartController::class, 'viewcart']);
      Route::get('checkout', [CheckoutController::class, 'index']);
+     Route::post('place-order', [CheckoutController::class, 'placeorder']);
+
+     Route::get('my-orders', [UserController::class, 'index']);
+     Route::get('view-order/{id}', [UserController::class, 'view']);
+
+     Route::get('wishlist', [WishlistController::class, 'index']);
+     
 });
 
 
@@ -64,4 +80,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('edit-product/{id}', [ProductController::class,'edit']);
     Route::put('update-product/{id}',[ProductController::class,'update']);
     Route::get('delete-product/{id}',[ProductController::class, 'destroy']);
+
+    
+    Route::get('orders', [OrderControlller::class, 'index']);
+    Route::get('admin/view-order/{id}', [OrderControlller::class, 'view']);
+    Route::put('update-order/{id}', [OrderControlller::class, 'updateorder']);
+    Route::get('order-history', [OrderControlller::class, 'orderhistory']);
+
+    Route::get('users', [DashboardControler::class, 'users']);
+    Route::get('view-users/{id}', [DashboardControler::class, 'viewusers']);
 });

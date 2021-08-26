@@ -6,6 +6,8 @@
 
 @section('content')
     <div class="container mt-5">
+        <form action="{{ url('place-order') }}" method="POST">
+            {{ csrf_field() }}
         <div class="row">
             <div class="col-md-7">
                 <div class="card">
@@ -14,28 +16,28 @@
                         <hr>
                         <div class="row checkout-form">
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">Nama</label>
-                                <input type="text" class="form-control" placeholder="Nama">
+                                <label for="">Nama</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->name }}" name="nama" placeholder="Nama">
                             </div>
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">Email</label>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <label for="">Email</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->email }}" name="email" placeholder="Email">
                             </div>
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">Nomor Hp</label>
-                                <input type="text" class="form-control" placeholder="Masukan nomor Handphone">
+                                <label for="">Nomor Hp</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->phone }}" name="phone" placeholder="Masukan nomor Handphone">
                             </div>
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">Alamat</label>
-                                <input type="text" class="form-control" placeholder="Masukan alamat">
+                                <label for="">Alamat</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->adress }}" name="adress" placeholder="Masukan alamat">
                             </div>
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">kota</label>
-                                <input type="text" class="form-control" placeholder="Nama kota">
+                                <label for="">kota</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->city }}" name="city" placeholder="Nama kota">
                             </div>
                             <div class="col-md-6 mt-3">
-                                <label for="firstName">Nama Jalan</label>
-                                <input type="text" class="form-control" placeholder="Nama Jalan">
+                                <label for="">Nama Jalan</label>
+                                <input type="text" class="form-control" value="{{ Auth::user()->state }}" name="state" placeholder="Nama Jalan">
                             </div>
                         </div>
                     </div>
@@ -66,10 +68,11 @@
                             </tbody>
                         </table>  
                         <hr>
-                        <button class="btn btn-primary float-end">Beli sekarang</button>                     
+                        <button type="submit" class="btn btn-primary">Beli sekarang</button>                     
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 @endsection

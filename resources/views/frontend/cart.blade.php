@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('title')
-    
+    Cart
 @endsection
 
 @section('content')
@@ -20,6 +20,7 @@
 
     <div class="container my-5">
         <div class="card shadow ">
+            @if ($cartitems->count() > 0)           
             <div class="card-body">
                 @php
                     $total = 0;
@@ -63,6 +64,12 @@
                 <a href="{{ url('checkout') }}" class="btn btn-outline-primary float-end">Halaman Checkout</a>
                 </h6>
             </div>
+            @else
+                <div class="card-body text-center">
+                    <h2>Keranjang Kamu <i class="fa fa-shopping-cart"></i> Masih kosong</h2>
+                    <a href="{{ url('category') }}" class="btn btn-primary float-end">Belanja sekarang</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
